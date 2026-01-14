@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Khand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import 'primereact/resources/themes/saga-blue/theme.css';
+@import 'primereact/resources/primereact.min.css';
+@import 'primeflex/primeflex.css';
+
+:root {
+    --primary-color: #09294B;
+    --secondary-color: #e04f00;
+    --background-color: #ffffff;
+    --success-color: #28a745;
+    --text-color: #333;
+    --font-family: 'khand', sans-serif;
+    --font-family-suport: 'montserrat', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family) !important;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--background-color);
+    display: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+}
+
+.quicksand-font{
+    font-family: var(--font-family-suport) !important;
+}
+
+.p-button:focus {
+    outline: none !important;
+    outline-offset: 0 !important;
+    box-shadow: none !important;
+}
+
+.header-link {
+    text-decoration: none;
+    color: #333;
+    padding-bottom: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.header-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease-in-out;
+}
+
+.header-link:hover::before {
+    width: 100%;
+}
+
+.links-hover:hover {
+    color: var(--background-color);
+    background-color: var(--primary-color);
+    border-radius: 50px;
+    transition: 0.1s ease-in-out;
+}
+
+.p-galleria.p-galleria-indicator-onitem .p-galleria-indicators {
+    background: unset !important;
+}
+
+.p-galleria.p-galleria-indicator-onitem .p-galleria-indicators .p-galleria-indicator.p-highlight button {
+    background-color: var('--primary-color') !important;
+}
+
+.p-card .p-card-body,
+.p-card .p-card-content {
+    padding: 0 !important;
+}
+
+.p-breadcrumb{
+    color: var(--primary-color) !important;
+    padding: unset;
+}
+.p-carousel .p-carousel-item {
+    display: flex;
+    justify-content: center;
+}

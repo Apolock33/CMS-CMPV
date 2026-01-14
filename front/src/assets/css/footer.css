@@ -1,0 +1,8 @@
+.container{
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    display: grid;
+    justify-content: space-between;
+    grid-template-areas: "box1 box2 box3";
+    padding: 4rem;
+}
