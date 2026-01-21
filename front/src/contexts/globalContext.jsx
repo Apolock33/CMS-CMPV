@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import useWindowSize from '../hooks/useWindowSize';
 import useScrollDown from '../hooks/useScrollDown';
 import news1 from '../assets/imgs/general/noticias/bailecmpv.jpg';
@@ -20,11 +20,11 @@ export const GlobalProvider = ({ children }) => {
     const { scrollY } = useScrollDown();
 
     useEffect(() => {
-        if (width <= 1024) {
+        if (width <= 1350) {
             setIsMobile(true);
         }
 
-        if (width > 1024) {
+        if (width > 1350) {
             setIsMobile(false);
         }
 

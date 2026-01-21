@@ -1,8 +1,8 @@
-import { BreadCrumb } from 'primereact/breadcrumb';
-import React, { useContext, useEffect, useState } from 'react'
-import useWindowSize from '../hooks/useWindowSize';
-import { useParams } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../contexts/globalContext';
+import { BreadCrumb } from 'primereact/breadcrumb';
+import { useParams } from 'react-router-dom';
+import useWindowSize from '../hooks/useWindowSize';
 
 const EventsDetails = () => {
     const { width } = useWindowSize();

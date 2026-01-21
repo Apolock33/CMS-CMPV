@@ -1,6 +1,5 @@
-import { Button } from 'primereact/button'
-import React from 'react'
 import { FaArrowLeft } from 'react-icons/fa6'
+import { Button } from 'primereact/button'
 
 const Error = () => {
     return (

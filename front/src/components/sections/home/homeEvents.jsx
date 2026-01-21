@@ -1,14 +1,14 @@
-import React, { useContext, useEffect } from 'react';
-import { FaArrowRight } from 'react-icons/fa6';
 import { Link, useNavigate } from 'react-router-dom';
-import useWindowSize from '../hooks/useWindowSize';
+import { GlobalContext } from '../../../contexts/globalContext';
+import { FaArrowRight } from 'react-icons/fa6';
+import { useContext } from 'react';
 import { motion } from 'motion/react';
-import { GlobalContext } from '../contexts/globalContext';
+import useWindowSize from '../../../hooks/useWindowSize';
 
-const Events = () => {
-    const { width } = useWindowSize();
+const HomeEvents = () => {
     const navigate = useNavigate();
     const { eventsInfos } = useContext(GlobalContext);
+    const { width } = useWindowSize();
 
     return (
         <div className='p-4'>
@@ -61,4 +61,4 @@ const Events = () => {
     );
 };
 
-export default Events;
+export default HomeEvents;
