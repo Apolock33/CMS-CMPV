@@ -1,12 +1,3 @@
-import React, { useState } from 'react';
-import { Carousel } from 'primereact/carousel';
-import useWindowSize from '../hooks/useWindowSize';
-import espaco1 from '../assets/imgs/general/belasartes.jpg';
-import espaco2 from '../assets/imgs/general/belavsita.jpg';
-import espaco3 from '../assets/imgs/general/terraco.jpg';
-import espaco4 from '../assets/imgs/general/tamandare.jpg';
-import espaco5 from '../assets/imgs/general/casablancaebelavista.jpg';
-import CarouselDialog from '../components/carouselDialog';
 import {
     BelasArtes1,
     BelasArtes2,
@@ -33,7 +24,16 @@ import {
     CasablancaeBelaVista3,
     CasablancaeBelaVista4,
     CasablancaeBelaVista5,
-} from '../imports/hallGallery';
+} from '../../../imports/hallGallery';
+import { useState } from 'react';
+import { Carousel } from 'primereact/carousel';
+import CarouselDialog from '../../../components/carouselDialog';
+import useWindowSize from '../../../hooks/useWindowSize';
+import espaco1 from '../../../assets/imgs/general/belasartes.jpg';
+import espaco2 from '../../../assets/imgs/general/belavsita.jpg';
+import espaco3 from '../../../assets/imgs/general/terraco.jpg';
+import espaco4 from '../../../assets/imgs/general/tamandare.jpg';
+import espaco5 from '../../../assets/imgs/general/casablancaebelavista.jpg';
 
 const Rents = () => {
     const { width } = useWindowSize();

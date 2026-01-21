@@ -1,4 +1,3 @@
-import React from 'react'
 import '../assets/css/index.css'
 import { ProgressBar } from 'primereact/progressbar'
 import useWindowSize from '../hooks/useWindowSize';

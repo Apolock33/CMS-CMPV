@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../contexts/globalContext';
 import { BreadCrumb } from 'primereact/breadcrumb';
+import { useParams } from 'react-router-dom';
 import useWindowSize from '../hooks/useWindowSize';
 
 const NewsDetails = () => {
@@ -18,7 +18,7 @@ const NewsDetails = () => {
 
     const breadcrumbItems = [
         { label: 'Home', url: '/' },
-        { label: `${newsItem?.title}`, url: `/novidades/${id}` }
+        { label: `${newsItem?.title}`, url: `/noticias/${id}` }
     ];
 
     return (

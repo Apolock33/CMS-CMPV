@@ -1,8 +1,8 @@
+import { PrimeReactProvider } from 'primereact/api'
 import React, { Suspense } from 'react'
 import { GlobalProvider } from './contexts/globalContext'
-import Routes from './routes'
-import { PrimeReactProvider } from 'primereact/api'
 import ErrorBoundary from './utils/errorBoundary';
+import Routes from './routes'
 
 const Loading = React.lazy(() => import('./components/loading'));
 

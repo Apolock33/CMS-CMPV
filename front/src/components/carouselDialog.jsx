@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { Galleria } from 'primereact/galleria';
 import { Carousel } from 'primereact/carousel';
 import { Button } from 'primereact/button';
 import { FaX } from 'react-icons/fa6';
 import useWindowSize from '../hooks/useWindowSize';
-import { Galleria } from 'primereact/galleria';
 
 const CarouselDialog = ({ visible, onClose, images }) => {
     const { width } = useWindowSize();

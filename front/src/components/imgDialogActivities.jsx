@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { GlobalContext } from '../contexts/globalContext';
 import { FaX } from 'react-icons/fa6';
