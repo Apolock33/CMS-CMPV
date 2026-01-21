@@ -1,10 +1,9 @@
-import React from 'react';
-import '../assets/css/footer.css';
-import sponsor1 from '../assets/imgs/logos/logoPOUPEX.png';
-import sponsor2 from '../assets/imgs/logos/logotipoFHE.png';
-import useWindowSize from '../hooks/useWindowSize';
-import { FaF, FaFacebook } from 'react-icons/fa6';
 import { AiFillInstagram } from 'react-icons/ai';
+import { FaFacebook } from 'react-icons/fa6';
+import useWindowSize from '../../hooks/useWindowSize';
+import sponsor1 from '../../assets/imgs/logos/logoPOUPEX.png';
+import sponsor2 from '../../assets/imgs/logos/logotipoFHE.png';
+import '../../assets/css/footer.css';
 
 const Footer = () => {
     const { width } = useWindowSize();

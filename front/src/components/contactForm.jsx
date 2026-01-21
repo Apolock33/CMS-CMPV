@@ -1,11 +1,11 @@
-import { Button } from 'primereact/button';
+import { useRef, useState } from 'react';
+import { InputTextarea } from 'primereact/inputtextarea';
 import { FloatLabel } from 'primereact/floatlabel';
 import { InputText } from 'primereact/inputtext';
-import { InputTextarea } from 'primereact/inputtextarea';
-import React, { useEffect, useRef, useState } from 'react';
+import { Button } from 'primereact/button';
+import { Toast } from 'primereact/toast';
 import useWindowSize from '../hooks/useWindowSize';
 import emailjs from '@emailjs/browser';
-import { Toast } from 'primereact/toast';
 
 const ContactForm = () => {
   const { width } = useWindowSize();

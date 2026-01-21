@@ -1,7 +1,5 @@
-import React from 'react';
 import { Button } from 'primereact/button';
 import { FaWhatsapp } from 'react-icons/fa6';
-import { useNavigate } from 'react-router-dom';
 
 const WppButton = () => {
     return (

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../contexts/globalContext';
 import useWindowSize from '../hooks/useWindowSize';
 import { AnimatePresence, motion } from 'motion/react';

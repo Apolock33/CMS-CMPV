@@ -1,16 +1,16 @@
-import React from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import EventsDetails from './pages/eventsDetails'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import React from 'react';
 
-const MainLayout = React.lazy(() => import('./components/mainLayout'))
-const BlankLayout = React.lazy(() => import('./components/blankLayout'))
-const Home = React.lazy(() => import('./pages/home'))
-const About = React.lazy(() => import('./pages/about'))
-const Activities = React.lazy(() => import('./pages/activities'))
-const Contacts = React.lazy(() => import('./pages/contact'))
-const NewsDetails = React.lazy(() => import('./pages/newsDetails'))
-const LogIn = React.lazy(() => import('./pages/login'))
-const Error = React.lazy(() => import('./pages/error'))
+const NewsDetails = React.lazy(() => import('./pages/newsDetails'));
+const Activities = React.lazy(() => import('./pages/activities'));
+const MainLayout = React.lazy(() => import('./layouts/mainLayout'));
+const Contacts = React.lazy(() => import('./pages/contact'));
+const Events = React.lazy(() => import('./pages/events'));
+// const EventsDetails = React.lazy(() => import('./pages/eventsDetails'));
+const About = React.lazy(() => import('./pages/about'));
+const Error = React.lazy(() => import('./pages/error'));
+const Home = React.lazy(() => import('./pages/home'));
+const News = React.lazy(() => import('./pages/news'));
 
 const Routes = () => {
     const publicRoutes = [
@@ -45,27 +45,28 @@ const Routes = () => {
                 },
                 {
                     id: 5,
-                    path: 'novidades/:id',
-                    element: <NewsDetails />,
+                    path: 'noticias',
+                    element: <News />,
                     errorElement: <Error />
                 },
                 {
                     id: 6,
-                    path: 'eventos/:id',
-                    element: <EventsDetails />,
+                    path: 'noticias/:id',
+                    element: <NewsDetails />,
                     errorElement: <Error />
                 },
-            ]
-        },
-        {
-            id: 2,
-            element: <BlankLayout />,
-            children: [
                 {
-                    path: '/login',
-                    element: <LogIn />,
+                    id: 7,
+                    path: 'eventos',
+                    element: <Events />,
                     errorElement: <Error />
-                }
+                },
+                // {
+                //     id: 8,
+                //     path: 'eventos/:id',
+                //     element: <EventsDetails />,
+                //     errorElement: <Error />
+                // },
             ]
         }
     ];

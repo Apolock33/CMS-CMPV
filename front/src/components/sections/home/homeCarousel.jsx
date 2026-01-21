@@ -1,12 +1,12 @@
-import React, { useContext } from 'react'
+import { GlobalContext } from '../../../contexts/globalContext';
+import { useContext } from 'react'
 import { Galleria } from 'primereact/galleria';
-import Img1 from '../assets/imgs/general/bondinho.jpg'
-import Img2 from '../assets/imgs/general/clube_cmpv.jpg'
-import Img3 from '../assets/imgs/general/frente.jpg'
-import Img4 from '../assets/imgs/general/slide10.jpg'
-import Img5 from '../assets/imgs/general/SLIDE13.jpg'
-import Img6 from '../assets/imgs/general/vista-praia-lateral.jpg'
-import { GlobalContext } from '../contexts/globalContext';
+import Img1 from '../../../assets/imgs/general/bondinho.jpg'
+import Img2 from '../../../assets/imgs/general/clube_cmpv.jpg'
+import Img3 from '../../../assets/imgs/general/frente.jpg'
+import Img4 from '../../../assets/imgs/general/slide10.jpg'
+import Img5 from '../../../assets/imgs/general/SLIDE13.jpg'
+import Img6 from '../../../assets/imgs/general/vista-praia-lateral.jpg'
 
 const HomeCarousel = () => {
     const {
