@@ -70,7 +70,7 @@ const Header = () => {
           </div>
           <hr />
           <div className="flex justify-content-center mt-3">
-            <Button label="Area do Sócio" rounded className="border-none flex gap-2" style={{ backgroundColor: "#09294B" }} onClick={() => navigate("/login")} />
+            <Button label="Area do Sócio" rounded className="border-none flex gap-2 w-full py-3" style={{ backgroundColor: "#09294B" }} onClick={() => navigate("/login")} />
           </div>
         </GeneralDrawer>
       )}

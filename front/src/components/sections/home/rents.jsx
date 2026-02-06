@@ -1,6 +1,7 @@
 import { BelasArtes1, BelasArtes2, BelasArtes3, BelasArtes4, BelasArtes5, BelaVista1, BelaVista2, BelaVista3, BelaVista4, BelaVista5, Terraco1, Terraco2, Terraco3, Terraco4, Terraco5, ArcosETamandare1, ArcosETamandare2, ArcosETamandare3, ArcosETamandare4, ArcosETamandare5, CasablancaeBelaVista1, CasablancaeBelaVista2, CasablancaeBelaVista3, CasablancaeBelaVista4, CasablancaeBelaVista5 } from "../../../imports/hallGallery";
 import { useEffect, useState } from "react";
 import { Carousel } from "primereact/carousel";
+import { api } from "../../../services/api";
 import CarouselDialog from "../../../components/carouselDialog";
 import useWindowSize from "../../../hooks/useWindowSize";
 import espaco1 from "../../../assets/imgs/general/belasartes.jpg";
@@ -8,7 +9,6 @@ import espaco2 from "../../../assets/imgs/general/belavsita.jpg";
 import espaco3 from "../../../assets/imgs/general/terraco.jpg";
 import espaco4 from "../../../assets/imgs/general/tamandare.jpg";
 import espaco5 from "../../../assets/imgs/general/casablancaebelavista.jpg";
-import { api } from "../../../services/api";
 
 const Rents = () => {
   const { width } = useWindowSize();
@@ -16,44 +16,21 @@ const Rents = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [spaces, setSpaces] = useState([]);
 
-   const getImages = async () => {
+  const getImages = async () => {
     try {
-      // Não precisa mudar a URL
       const response = await api.get("/recursos?populate=*");
       const rawData = response.data.data;
-
-      // Formatar os dados - AGORA CORRIGIDO PARA O SEU JSON
       const formattedData = rawData
-        .filter(item => item.imagem !== null) // Filtra itens que não tem capa para não quebrar o layout
+        .filter((item) => item.imagem !== null)
         .map((item) => {
-        
-        // ACESSO DIRETO, pois seu JSON não tem 'attributes'
-        const imageObj = item.imagem;
-        
-        const imageUrl = imageObj?.url 
-          ? `${"http://localhost:1337"}${imageObj.url}` 
-          : "https://via.placeholder.com/400";
-
-        // Sua galeria está null vindo do Strapi. 
-        // Se quiser mostrar as imagens locais antigas, precisamos mapear pelo nome.
-        // Por enquanto, vou deixar vazia para não dar erro, mas o código abaixo está preparado.
-        let galleryImages = [];
-        
-        // Se você quiser tentar usar as imagens locais baseadas no nome (hack temporário):
-        if (item.nome.includes("Belas Artes")) galleryImages = [BelasArtes1, BelasArtes2, BelasArtes3, BelasArtes4, BelasArtes5];
-        else if (item.nome.includes("Bela Vista")) galleryImages = [BelaVista1, BelaVista2, BelaVista3, BelaVista4, BelaVista5];
-        else if (item.nome.includes("Terraco")) galleryImages = [Terraco1, Terraco2, Terraco3, Terraco4, Terraco5];
-        // etc...
-
-        return {
-          id: item.id,
-          itemImageSrc: imageUrl,
-          title: item.nome, // O campo se chama 'nome' no seu JSON
-          gallery: galleryImages, 
-        };
-      });
-
-      console.log(formattedData);
+          const imageObj = item.imagem;
+          const imageUrl = imageObj?.url ? `${import.meta.env.VITE_URL}${imageObj.url}` : "https://via.placeholder.com/400";
+          let galleryImages = [];
+          if (item.nome.includes("Belas Artes")) galleryImages = [BelasArtes1, BelasArtes2, BelasArtes3, BelasArtes4, BelasArtes5];
+          else if (item.nome.includes("Bela Vista")) galleryImages = [BelaVista1, BelaVista2, BelaVista3, BelaVista4, BelaVista5];
+          else if (item.nome.includes("Terraco")) galleryImages = [Terraco1, Terraco2, Terraco3, Terraco4, Terraco5];
+          return { id: item.id, itemImageSrc: imageUrl, title: item.nome, gallery: galleryImages };
+        });
       setSpaces(formattedData);
     } catch (error) {
       console.log("Erro ao buscar recursos:", error);
@@ -94,21 +71,9 @@ const Rents = () => {
   ];
 
   const responsiveOptions = [
-    {
-      breakpoint: "1024px",
-      numVisible: 2,
-      numScroll: 1,
-    },
-    {
-      breakpoint: "768px",
-      numVisible: 2,
-      numScroll: 1,
-    },
-    {
-      breakpoint: "426px",
-      numVisible: 1,
-      numScroll: 1,
-    },
+    { breakpoint: "1024px", numVisible: 2, numScroll: 1 },
+    { breakpoint: "768px", numVisible: 2, numScroll: 1 },
+    { breakpoint: "426px", numVisible: 1, numScroll: 1 },
   ];
 
   useEffect(() => {
@@ -125,14 +90,7 @@ const Rents = () => {
         }}
       >
         <img src={item.itemImageSrc} alt={item.title} className="w-full border-round-xl" />
-        <div
-          className="absolute bottom-0 left-0 w-full text-white"
-          style={{
-            background: "rgba(0, 0, 0, 0.6)",
-            backdropFilter: "blur(2px)",
-            padding: "0.1rem 1rem",
-          }}
-        >
+        <div className="absolute bottom-0 left-0 w-full text-white" style={{ background: "rgba(0, 0, 0, 0.6)", backdropFilter: "blur(2px)", padding: "0.1rem 1rem" }}>
           <h3 className="m-0 text-lg font-bold">{item.title}</h3>
         </div>
       </div>

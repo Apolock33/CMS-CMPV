@@ -3,6 +3,7 @@ import { FaArrowRight } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import useWindowSize from "../../../hooks/useWindowSize";
+import { api } from "../../../services/api";
 
 const HomeNews = () => {
   const [newsInfos, setNewsInfos] = useState([]);
@@ -11,9 +12,13 @@ const HomeNews = () => {
 
   const getNews = async () => {
     try {
-      const response = await fetch("http://localhost:1337/api/noticias?populate=*&pagination[limit]=4");
-      const data = await response.json();
-      setNewsInfos(data.data);
+      const response = await api.get("/noticias?populate=*&pagination[limit]=4");
+      console.log(response.data.data);
+      const formattedData = response.data.data.map((item) => ({
+        ...item,
+        capa: item.capa?.url ? `${import.meta.env.VITE_URL}${item.capa.url}` : `${import.meta.env.PLACEHOLDER_URL}/400`,
+      }));
+      setNewsInfos(formattedData);
     } catch (error) {
       console.log(error);
     }
@@ -36,7 +41,7 @@ const HomeNews = () => {
       </div>
 
       <div className={`${width < 768 ? "flex flex-column" : "grid"}`}>
-        {(width < 769 ? cardInfosMobile : newsInfos).map((card) => (
+        {newsInfos.map((card) => (
           <motion.div key={card.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: card.id * 0.1 }} className={`${width < 769 ? "col-12 mb-3" : "col-6"} cursor-pointer`} style={{ height: width < 769 ? "350px" : "400px" }} onClick={() => navigate("/noticias/" + card.id)}>
             <div className="relative overflow-hidden w-full h-full border-round-xl" style={{ borderRadius: "12px" }}>
               <motion.img src={card.capa} alt={card.titulo} className="w-full h-full object-cover" whileHover={{ scale: 1.05 }} transition={{ duration: 0.4 }} />

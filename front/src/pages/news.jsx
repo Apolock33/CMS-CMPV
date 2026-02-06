@@ -15,10 +15,16 @@ const News = () => {
 
   const getNews = async () => {
     try {
+      setCarregando(true);
       const response = await api.get("/noticias?populate=*");
-      setNewsInfos(response.data.data);
+      const dadosFormatados = response.data.data.map((item) => {
+        return { ...item, id: item.id - 1, capa: `${import.meta.env.VITE_URL}${item.capa.url}`, publicado_em: item.postado_em };
+      });
+      setNewsInfos(dadosFormatados);
     } catch (error) {
       console.log(error);
+    } finally {
+      setCarregando(false);
     }
   };
 
@@ -31,9 +37,7 @@ const News = () => {
       <div className="mx-5">
         <PageTitle titulo="Notícias" caminho={path} />
       </div>
-      <Spinner carregando={carregando}>
-        {newsInfos.length > 0 && <NewsBlock newsInfos={newsInfos} />}
-      </Spinner>
+      <Spinner carregando={carregando}>{newsInfos.length > 0 && <NewsBlock newsInfos={newsInfos} />}</Spinner>
     </div>
   );
 };

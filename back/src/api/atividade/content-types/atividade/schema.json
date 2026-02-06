@@ -34,12 +34,26 @@
       "required": true
     },
     "descricao": {
-      "type": "string",
+      "type": "richtext",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true
+    },
+    "capa": {
+      "type": "media",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }

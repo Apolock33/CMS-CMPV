@@ -446,6 +446,13 @@ export interface ApiAtividadeAtividade extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
+    capa: Schema.Attribute.Media<'images', true> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     contato: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -456,7 +463,8 @@ export interface ApiAtividadeAtividade extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    descricao: Schema.Attribute.String &
+    descricao: Schema.Attribute.RichText &
+      Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -537,7 +545,7 @@ export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
         };
       }>;
     publishedAt: Schema.Attribute.DateTime;
-    Titulo: Schema.Attribute.String &
+    titulo: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
