@@ -51,8 +51,8 @@ const ImgDialog = ({ visible, onclose, imgSelected }) => {
                     style={{ padding: '1rem' }}
                 >
                     <img
-                        src={image?.itemImageSrc}
-                        alt={image?.title}
+                        src={image?.capa}
+                        alt={image?.nome}
                         style={{
                             width: '100%',
                             height: 'auto',
@@ -63,14 +63,21 @@ const ImgDialog = ({ visible, onclose, imgSelected }) => {
                     />
                 </div>
                 <div className={`${width < 768 ? 'col-12' : 'col-6'} pr-5`} style={{ padding: '1rem' }}>
-                    <h1 style={{ color: 'var(--primary-color)' }}>{image?.title} - Informações:</h1>
+                    <h1 style={{ color: 'var(--primary-color)' }}>{image?.nome} - Informações:</h1>
                     <p style={{
                         whiteSpace: 'pre-wrap',
                         overflowWrap: 'break-word',
                         wordWrap: 'break-word',
                         wordBreak: 'break-word',
                         fontFamily: 'var(--font-family-suport)',
-                    }}>{image?.infos}</p>
+                    }}>{image?.descricao}</p>
+                    <p style={{
+                        whiteSpace: 'pre-wrap',
+                        overflowWrap: 'break-word',
+                        wordWrap: 'break-word',
+                        wordBreak: 'break-word',
+                        fontFamily: 'var(--font-family-suport)',
+                    }}>Contato: {image?.contato}</p>
                 </div>
             </div>
         );

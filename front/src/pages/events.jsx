@@ -1,14 +1,25 @@
-import { useState } from "react";
 import PageTitle from "../components/designSystem/pageTitle";
-import Spinner from "../components/designSystem/Spinner";
+import Calendar from "../components/designSystem/calendar";
 
 const Events = () => {
-  const [carregando, setCarregando] = useState(true);
-  const [newsInfos, setNewsInfos] = useState([]);
-
   const path = [
     { label: "Home", url: "/" },
     { label: "Eventos", url: "/eventos" },
+  ];
+
+  const eventos = [
+    {
+      id: 1,
+      title: "Evento 1",
+      start: "2026-01-23",
+      end: "2026-01-23",
+    },
+    {
+      id: 2,
+      title: "Evento 2",
+      start: "2026-01-24",
+      end: "2026-01-24",
+    },
   ];
 
   return (
@@ -16,7 +27,9 @@ const Events = () => {
       <div className="mx-5">
         <PageTitle titulo="Eventos" caminho={path} />
       </div>
-      {/* <Spinner carregando={carregando}><NewsBlock newsInfos={newsInfos} /></Spinner> */}
+      <div className="mx-5 mb-3">
+        <Calendar events={eventos}/>
+      </div>
     </div>
   );
 };
