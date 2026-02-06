@@ -58,7 +58,10 @@ const Header = () => {
         <GeneralDrawer isVisible={visible} onClose={() => setVisible(false)} drawerSide="end">
           <div className="flex flex-column gap-3">
             {publicLinks.map((link) => (
-              <div key={link.id} className="flex justify-content-center p-3 cursor-pointer links-hover" onClick={() => setVisible(false)}>
+              <div key={link.id} className="flex justify-content-center p-3 cursor-pointer links-hover" onClick={() => {
+                setVisible(false)
+                navigate(link.path)
+              }}>
                 <Link to={link.path} className="text-lg no-underline text-primary">
                   {link.name}
                 </Link>
@@ -67,7 +70,7 @@ const Header = () => {
           </div>
           <hr />
           <div className="flex justify-content-center mt-3">
-            <Button label="Area do Sócio" rounded className="border-none flex gap-2" style={{ backgroundColor: "#09294B" }} onClick={() => navigate("/login")} />
+            <Button label="Area do Sócio" rounded className="border-none flex gap-2 w-full py-3" style={{ backgroundColor: "#09294B" }} onClick={() => navigate("/login")} />
           </div>
         </GeneralDrawer>
       )}

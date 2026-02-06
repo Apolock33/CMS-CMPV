@@ -1,9 +1,9 @@
-import React from "react";
 import { motion } from "motion/react";
+import React from "react";
 
 const HomeCarousel = React.lazy(() => import("../components/sections/home/homeCarousel"));
-const HomeNews = React.lazy(() => import("../components/sections/home/homeNews"));
 const HomeEvents = React.lazy(() => import("../components/sections/home/homeEvents"));
+const HomeNews = React.lazy(() => import("../components/sections/home/homeNews"));
 const Rents = React.lazy(() => import("../components/sections/home/rents"));
 
 const Home = () => {
