@@ -1,43 +1,30 @@
 import { useContext, useEffect, useState } from 'react'
 import { GlobalContext } from '../contexts/globalContext';
-import { BreadCrumb } from 'primereact/breadcrumb';
 import { useParams } from 'react-router-dom';
 import useWindowSize from '../hooks/useWindowSize';
+import PageTitle from '../components/designSystem/pageTitle';
 
 const EventsDetails = () => {
+    const [eventsItem, setEventsItem] = useState(null);
+    const { eventsInfos } = useContext(GlobalContext);
     const { width } = useWindowSize();
     const { id } = useParams();
-    const { eventsInfos } = useContext(GlobalContext);
-    const [eventsItem, setEventsItem] = useState(null);
 
     useEffect(() => {
         const item = eventsInfos.find(events => events.id === parseInt(id));
         setEventsItem(item);
-        console.log(eventsItem);
     }, [eventsItem]);
 
-    const breadcrumbItems = [
+    const path = [
         { label: 'Home', url: '/' },
+        { label: 'Eventos', url: '/eventos' },
         { label: `${eventsItem?.title}`, url: `/eventos/${id}` }
     ];
 
     return (
         <section>
-            <div className='p-6'>
-                <div className={`flex ${width < 769 ? 'flex-column' : 'align-items-center justify-content-between'} gap-3`}>
-                    {width < 769 ? (
-                        <>
-                            <BreadCrumb model={breadcrumbItems} className='border-none text-medium' />
-                            <h1 className="text-3xl font-bold p-0" style={{ color: 'var(--primary-color)' }}>{eventsItem?.title}</h1>
-                        </>
-                    ) : (
-                        <>
-                            <h1 className="text-3xl font-bold p-0" style={{ color: 'var(--primary-color)' }}>{eventsItem?.title}</h1>
-                            <BreadCrumb model={breadcrumbItems} className='border-none text-medium' />
-
-                        </>
-                    )}
-                </div>
+            <div className='px-5 mt-3'>
+                <PageTitle titulo={eventsItem?.title} caminho={path} />
                 <p>Data da Postagem: {eventsItem?.date}</p>
 
                 <div className={`flex ${width < 769 ? 'flex-column' : 'justify-content-between'} gap-3 mt-4`}>

@@ -1,37 +1,30 @@
-import { useContext, useEffect, useState } from "react";
-import { GlobalContext } from "../contexts/globalContext";
+import { useEffect, useState } from "react";
 import { api } from "../services/api";
 import PageTitle from "../components/designSystem/pageTitle";
-import NewsBlock from "../components/newsBlock";
+import NewsBlock from "../components/sections/news/newsBlock";
 import Spinner from "../components/designSystem/Spinner";
 
 const News = () => {
   const [carregando, setCarregando] = useState(false);
-  const [newsBlock, setNewsBlock] = useState([]);
-  // const [newsInfos, setNewsInfos] = useState([]);
-  const { newsInfos } = useContext(GlobalContext);
+  const [newsInfos, setNewsInfos] = useState([]);
 
   const path = [
     { label: "Home", url: "/" },
     { label: "Notícias", url: "/noticias" },
   ];
 
-  //   const getNews = async () => {
-  //     try {
-  //       setCarregando(true);
-  //       const response = await api.get("http://localhost:3000/noticias");
-  //       const data = await response.json();
-  //       setNewsInfos(data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     } finally {
-  //       setCarregando(false);
-  //     }
-  //   };
+  const getNews = async () => {
+    try {
+      const response = await api.get("/noticias?populate=*");
+      setNewsInfos(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  //   useEffect(() => {
-  //     getNews();
-  //   }, []);
+  useEffect(() => {
+    getNews();
+  }, []);
 
   return (
     <div className="">
@@ -39,7 +32,7 @@ const News = () => {
         <PageTitle titulo="Notícias" caminho={path} />
       </div>
       <Spinner carregando={carregando}>
-        <NewsBlock newsInfos={newsInfos} />
+        {newsInfos.length > 0 && <NewsBlock newsInfos={newsInfos} />}
       </Spinner>
     </div>
   );

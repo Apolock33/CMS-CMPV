@@ -1,14 +1,27 @@
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { GlobalContext } from '../../../contexts/globalContext';
 import { FaArrowRight } from 'react-icons/fa6';
-import { useContext } from 'react';
 import { motion } from 'motion/react';
+import { api } from '../../../services/api';
 import useWindowSize from '../../../hooks/useWindowSize';
 
 const HomeEvents = () => {
     const navigate = useNavigate();
-    const { eventsInfos } = useContext(GlobalContext);
-    const { width } = useWindowSize();
+    const [eventsInfos, setEventsInfos] = useState([]);
+    const { width } = useWindowSize();  
+
+    const getEvents = async () => {
+        try {
+            const response = await api.get("/eventos?populate=*&pagination[limit]=4");
+            setEventsInfos(response.data.data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        getEvents();
+    }, []);
 
     return (
         <div className='p-4'>
@@ -36,17 +49,7 @@ const HomeEvents = () => {
                     >
                         <div className="w-full  overflow-hidden border-round-xl  shadow-1 bg-white">
                             <div className="flex h-full justify-content-start align-items-center">
-                                <img
-                                    src={event.img}
-                                    alt={event.title}
-                                    style={{
-                                        width: width < 768 ? '100px' : '150px',
-                                        height: width < 768 ? '100px' : '150px',
-                                        objectFit: 'cover',
-                                        flexShrink: 0,
-                                    }}
-                                />
-
+                                <img src={event.img} alt={event.title} style={{ width: width < 768 ? '100px' : '150px', height: width < 768 ? '100px' : '150px', objectFit: 'cover', flexShrink: 0, }} />
                                 <div className="flex flex-column justify-content-center px-3 w-70 h-full">
                                     <h2 className="text-lg font-semibold mb-1">{event.date}</h2>
                                     <p className={`text-color-secondary m-0 ${width < 768 ? 'text-sm' : 'text-xl'}`}>{event.title}</p>

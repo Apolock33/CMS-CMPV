@@ -58,7 +58,10 @@ const Header = () => {
         <GeneralDrawer isVisible={visible} onClose={() => setVisible(false)} drawerSide="end">
           <div className="flex flex-column gap-3">
             {publicLinks.map((link) => (
-              <div key={link.id} className="flex justify-content-center p-3 cursor-pointer links-hover" onClick={() => setVisible(false)}>
+              <div key={link.id} className="flex justify-content-center p-3 cursor-pointer links-hover" onClick={() => {
+                setVisible(false)
+                navigate(link.path)
+              }}>
                 <Link to={link.path} className="text-lg no-underline text-primary">
                   {link.name}
                 </Link>

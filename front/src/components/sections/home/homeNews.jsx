@@ -1,16 +1,27 @@
 import { Link, useNavigate } from "react-router-dom";
-import { GlobalContext } from "../../../contexts/globalContext";
 import { FaArrowRight } from "react-icons/fa6";
-import { useContext } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import useWindowSize from "../../../hooks/useWindowSize";
 
 const HomeNews = () => {
-  const { width } = useWindowSize();
-  const { newsInfos } = useContext(GlobalContext);
+  const [newsInfos, setNewsInfos] = useState([]);
   const navigate = useNavigate();
+  const { width } = useWindowSize();
 
-  const cardInfosMobile = newsInfos.slice(0, 2);
+  const getNews = async () => {
+    try {
+      const response = await fetch("http://localhost:1337/api/noticias?populate=*&pagination[limit]=4");
+      const data = await response.json();
+      setNewsInfos(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getNews();
+  }, []);
 
   return (
     <div className="p-4">
@@ -28,10 +39,10 @@ const HomeNews = () => {
         {(width < 769 ? cardInfosMobile : newsInfos).map((card) => (
           <motion.div key={card.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: card.id * 0.1 }} className={`${width < 769 ? "col-12 mb-3" : "col-6"} cursor-pointer`} style={{ height: width < 769 ? "350px" : "400px" }} onClick={() => navigate("/noticias/" + card.id)}>
             <div className="relative overflow-hidden w-full h-full border-round-xl" style={{ borderRadius: "12px" }}>
-              <motion.img src={card.imageUrl} alt={card.title} className="w-full h-full object-cover" whileHover={{ scale: 1.05 }} transition={{ duration: 0.4 }} />
+              <motion.img src={card.capa} alt={card.titulo} className="w-full h-full object-cover" whileHover={{ scale: 1.05 }} transition={{ duration: 0.4 }} />
               <div className="absolute bottom-0 left-0 w-full text-white px-4 py-3" style={{ background: "rgba(0, 0, 0, 0.6)", display: "flex", flexDirection: "column", justifyContent: "center", backdropFilter: "blur(2px)" }}>
-                <h2 className="m-0 text-base font-bold mb-1">{card.title}</h2>
-                <p className="m-0 text-sm">{card.description}</p>
+                <h2 className="m-0 text-base font-bold mb-1">{card.titulo}</h2>
+                <p className="m-0 text-sm">{card.subtitulo}</p>
               </div>
             </div>
           </motion.div>

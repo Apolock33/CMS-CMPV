@@ -6,7 +6,7 @@ const Activities = React.lazy(() => import('./pages/activities'));
 const MainLayout = React.lazy(() => import('./layouts/mainLayout'));
 const Contacts = React.lazy(() => import('./pages/contact'));
 const Events = React.lazy(() => import('./pages/events'));
-// const EventsDetails = React.lazy(() => import('./pages/eventsDetails'));
+const EventsDetails = React.lazy(() => import('./pages/eventsDetails'));
 const About = React.lazy(() => import('./pages/about'));
 const Error = React.lazy(() => import('./pages/error'));
 const Home = React.lazy(() => import('./pages/home'));
@@ -35,7 +35,8 @@ const Routes = () => {
                 {
                     id: 3,
                     path: 'atividades',
-                    element: <Activities />
+                    element: <Activities />,
+                    errorElement: <Error />
                 },
                 {
                     id: 4,
@@ -61,12 +62,12 @@ const Routes = () => {
                     element: <Events />,
                     errorElement: <Error />
                 },
-                // {
-                //     id: 8,
-                //     path: 'eventos/:id',
-                //     element: <EventsDetails />,
-                //     errorElement: <Error />
-                // },
+                {
+                    id: 8,
+                    path: 'eventos/:id',
+                    element: <EventsDetails />,
+                    errorElement: <Error />
+                },
             ]
         }
     ];
