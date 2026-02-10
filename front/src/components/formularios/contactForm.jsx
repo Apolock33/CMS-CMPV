@@ -33,11 +33,9 @@ const ContactForm = () => {
           htmlContent: emailHTML,
           sender: { name: values.fullName, email: values.senderEmail },
         });
-        console.log("Email enviado com sucesso");
         toast.current?.show({ severity: "success", summary: "Sucesso!", detail: "Sua mensagem foi enviada. Entraremos em contato em breve!" });
         formik.resetForm();
       } catch (error) {
-        console.error("Erro ao enviar o formulário:", error);
         toast.current?.show({ severity: "error", summary: "Erro!", detail: `Houve um problema ao enviar sua mensagem. Tente novamente mais tarde.` });
       } finally {
         setSubmitting(false);

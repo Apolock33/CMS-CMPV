@@ -13,7 +13,7 @@ const HomeEvents = () => {
 
   const getEvents = async () => {
     try {
-      const response = await api.get("/eventos?populate=*&pagination[limit]=4");
+      const response = await api.get("/eventos?populate=*&pagination[limit]=5");
       const formattedData = response.data.data.map((item) => ({
         ...item,
         capa: item.capa?.url ? `${import.meta.env.VITE_URL}${item.capa.url}` : `${import.meta.env.PLACEHOLDER_URL}/400`,
@@ -42,8 +42,8 @@ const HomeEvents = () => {
 
       <div className="flex flex-column gap-3">
         {eventsInfos?.map((event) => (
-          <motion.div key={event.id} className="w-full cursor-pointer" style={{ height: width < 768 ? "100px" : "155px" }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => navigate("/eventos/" + event.documentId)}>
-            <div className="w-full  overflow-hidden border-round-xl  shadow-1 bg-white">
+          <motion.div key={event.id} className="w-full cursor-pointer" style={{ height: width < 768 ? "100px" : "140px" }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => navigate("/eventos/" + event.documentId)}>
+            <div className="w-full overflow-hidden border-round-xl shadow-1 bg-white">
               <div className="flex h-full justify-content-start align-items-center">
                 <img src={event.capa} alt={event.titulo} style={{ width: width < 768 ? "100px" : "150px", height: width < 768 ? "100px" : "150px", objectFit: "cover", flexShrink: 0 }} />
                 <div className="flex flex-column justify-content-center px-3 w-70 h-full">

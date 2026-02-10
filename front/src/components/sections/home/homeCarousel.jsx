@@ -21,22 +21,13 @@ const HomeCarousel = () => {
   ];
 
   const responsiveOptions = [
-    {
-      breakpoint: "1024px",
-      numVisible: 5,
-    },
-    {
-      breakpoint: "768px",
-      numVisible: 3,
-    },
-    {
-      breakpoint: "425px",
-      numVisible: 1,
-    },
+    { breakpoint: "1024px", numVisible: 5 },
+    { breakpoint: "768px", numVisible: 3 },
+    { breakpoint: "425px", numVisible: 1 },
   ];
 
   const itemTemplate = (item) => {
-    return <img src={item.itemImageSrc} alt={item.alt} style={{ minWidth: "100%", minHeight: isMobile ? "40vh" : "60vh", objectFit: "cover", objectPosition: "center" }} />;
+    return <img src={item.itemImageSrc} alt={item.alt} style={{ minWidth: "100%", minHeight: isMobile ? "40vh" : "60vh", maxHeight: "60vh", objectFit: "cover", objectPosition: "center" }} />;
   };
 
   return <Galleria value={images} responsiveOptions={responsiveOptions} numVisible={5} circular showItemNavigators showItemNavigatorsOnHover={!isMobile} draggable showIndicators item={itemTemplate} showThumbnails={false} className="w-full" style={{ width: "100vw" }} showIndicatorsOnItem={true} />;

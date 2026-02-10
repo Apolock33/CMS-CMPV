@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_media_slide_carrosels",
+  "info": {
+    "displayName": "slideCarrosel",
+    "icon": "stack"
+  },
+  "options": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "legenda": {
+      "type": "text"
+    },
+    "imagem": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

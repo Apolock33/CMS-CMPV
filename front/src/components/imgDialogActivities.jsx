@@ -55,7 +55,6 @@ const ImgDialog = ({ visible, onclose, imgSelected }) => {
                         alt={image?.nome}
                         style={{
                             width: '100%',
-                            height: 'auto',
                             maxHeight: isMobile ? '200px' : '400px',
                             objectFit: 'contain',
                             borderRadius: '12px'

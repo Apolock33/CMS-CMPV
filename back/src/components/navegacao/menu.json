@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_navegacao_menus",
+  "info": {
+    "displayName": "Menu",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "Link": {
+      "type": "component",
+      "component": "navegacao.nav",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

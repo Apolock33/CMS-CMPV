@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_layout_grid_secoes",
+  "info": {
+    "displayName": "GridSecoes",
+    "icon": "dashboard"
+  },
+  "options": {},
+  "attributes": {
+    "Noticias": {
+      "type": "component",
+      "component": "secao.secao-noticias",
+      "repeatable": false
+    },
+    "Eventos": {
+      "type": "component",
+      "component": "secao.secao-eventos",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

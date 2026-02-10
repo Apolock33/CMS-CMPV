@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_secao_secao_eventos",
+  "info": {
+    "displayName": "SecaoEventos",
+    "icon": "moon"
+  },
+  "options": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "lista_cards": {
+      "type": "component",
+      "component": "conteudo.card-evento",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

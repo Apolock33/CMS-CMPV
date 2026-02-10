@@ -15,14 +15,14 @@
     }
   },
   "attributes": {
-    "imagem": {
+    "imagens": {
       "type": "media",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "allowedTypes": [
         "images"

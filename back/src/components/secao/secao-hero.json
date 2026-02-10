@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_secao_secao_heroes",
+  "info": {
+    "displayName": "SecaoHero",
+    "icon": "crown"
+  },
+  "options": {},
+  "attributes": {
+    "Slides": {
+      "type": "component",
+      "component": "media.slide-carrosel",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}
