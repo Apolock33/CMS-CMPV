@@ -1,198 +1,22 @@
-import { Facility1, Facility2, Facility3, Facility4, Facility5, Facility6, Facility7, Facility8, Facility9, Facility10, Facility11, Facility12, Facility13, Facility14, Facility15, Facility16, Facility17, Facility18, Facility19, Facility20, Facility21, Facility22, Facility23, Facility24, Facility25, Facility26 } from "../imports/facilitiesGallery";
 import { FaBuilding, FaUser } from "react-icons/fa6";
 import { TabView, TabPanel } from "primereact/tabview";
-import { BreadCrumb } from "primereact/breadcrumb";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Carousel } from "primereact/carousel";
 import useWindowSize from "../hooks/useWindowSize";
 import ImgDialog from "../components/imgDialog";
 import PageTitle from "../components/designSystem/pageTitle";
+import { api } from "../services/api";
 
 const About = () => {
   const [visibleDialog, setVisibleDialog] = useState(false);
+  const [imagens, setImagens] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const { width } = useWindowSize();
 
-  const breadcrumbItems = [
-    { label: "Home", url: "/" },
-    { label: "Sobre Nós", url: "/sobrenos" },
-  ];
-
-  const imgsFacilities = [
-    {
-      id: 1,
-      src: Facility1,
-      alt: "Imagem 1",
-      gallery: [Facility1, Facility2, Facility3],
-    },
-    {
-      id: 2,
-      src: Facility2,
-      alt: "Imagem 2",
-      gallery: [],
-    },
-    {
-      id: 3,
-      src: Facility3,
-      alt: "Imagem 3",
-      gallery: [],
-    },
-    {
-      id: 4,
-      src: Facility4,
-      alt: "Imagem 4",
-      gallery: [],
-    },
-    {
-      id: 5,
-      src: Facility5,
-      alt: "Imagem 5",
-      gallery: [],
-    },
-    {
-      id: 6,
-      src: Facility6,
-      alt: "Imagem 6",
-      gallery: [],
-    },
-    {
-      id: 7,
-      src: Facility7,
-      alt: "Imagem 7",
-      gallery: [],
-    },
-    {
-      id: 8,
-      src: Facility8,
-      alt: "Imagem 8",
-      gallery: [],
-    },
-    {
-      id: 9,
-      src: Facility9,
-      alt: "Imagem 9",
-      gallery: [],
-    },
-    {
-      id: 10,
-      src: Facility10,
-      alt: "Imagem 10",
-      gallery: [],
-    },
-    {
-      id: 11,
-      src: Facility11,
-      alt: "Imagem 11",
-      gallery: [],
-    },
-    {
-      id: 12,
-      src: Facility12,
-      alt: "Imagem 12",
-      gallery: [],
-    },
-    {
-      id: 13,
-      src: Facility13,
-      alt: "Imagem 13",
-      gallery: [],
-    },
-    {
-      id: 14,
-      src: Facility14,
-      alt: "Imagem 14",
-      gallery: [],
-    },
-    {
-      id: 15,
-      src: Facility15,
-      alt: "Imagem 15",
-      gallery: [],
-    },
-    {
-      id: 16,
-      src: Facility16,
-      alt: "Imagem 16",
-      gallery: [],
-    },
-    {
-      id: 17,
-      src: Facility17,
-      alt: "Imagem 17",
-      gallery: [],
-    },
-    {
-      id: 18,
-      src: Facility18,
-      alt: "Imagem 18",
-      gallery: [],
-    },
-    {
-      id: 19,
-      src: Facility19,
-      alt: "Imagem 19",
-      gallery: [],
-    },
-    {
-      id: 20,
-      src: Facility20,
-      alt: "Imagem 20",
-      gallery: [],
-    },
-    {
-      id: 21,
-      src: Facility21,
-      alt: "Imagem 21",
-      gallery: [],
-    },
-    {
-      id: 22,
-      src: Facility22,
-      alt: "Imagem 22",
-      gallery: [],
-    },
-    {
-      id: 23,
-      src: Facility23,
-      alt: "Imagem 23",
-      gallery: [],
-    },
-    {
-      id: 24,
-      src: Facility24,
-      alt: "Imagem 24",
-      gallery: [],
-    },
-    {
-      id: 25,
-      src: Facility25,
-      alt: "Imagem 25",
-      gallery: [],
-    },
-    {
-      id: 26,
-      src: Facility26,
-      alt: "Imagem 26",
-      gallery: [],
-    },
-  ];
-
   const responsiveOptions = [
-    {
-      breakpoint: "1024px",
-      numVisible: 1,
-      numScroll: 1,
-    },
-    {
-      breakpoint: "768px",
-      numVisible: 1,
-      numScroll: 1,
-    },
-    {
-      breakpoint: "426px",
-      numVisible: 1,
-      numScroll: 1,
-    },
+    { breakpoint: "1024px", numVisible: 1, numScroll: 1 },
+    { breakpoint: "768px", numVisible: 1, numScroll: 1 },
+    { breakpoint: "426px", numVisible: 1, numScroll: 1 },
   ];
 
   const path = [
@@ -200,19 +24,41 @@ const About = () => {
     { label: "Sobre Nós", url: "/sobrenos" },
   ];
 
-  const itemTemplate = (item) => {
+  const getImagens = async () => {
+    try {
+      const response = await api.get("/galerias?populate=*&pagination[limit]=6");
+      console.log(response.data.data[0].imagens);
+      const formattedData = response.data.data[0].imagens.map((item) => (item?.url ? `${import.meta.env.VITE_URL}${item.url}` : `${import.meta.env.PLACEHOLDER_URL}/400`));
+      console.log(formattedData);
+      setImagens(formattedData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+    const itemTemplate = (item) => {
     return (
-      <div
-        className="cursor-pointer relative overflow-hidden border-round-xl mx-2"
+      <div 
+        className="cursor-pointer border-round-xl mx-2 overflow-hidden" 
+        style={{ height: '300px', width: '100%' }} // ALTURA FIXA É ESSENCIAL AQUI
         onClick={() => {
           setSelectedImage(item);
           setVisibleDialog(true);
         }}
       >
-        <img src={item.src} alt={item.title} className="border-round-xl h-full w-full" />
+        <img 
+          src={item} 
+          alt="Instalação" 
+          className="w-full h-full block" 
+          style={{ objectFit: 'cover' }} // Garante que a imagem encha o espaço sem distorcer
+        />
       </div>
     );
   };
+
+  useEffect(() => {
+    getImagens();
+  }, []);
 
   return (
     <section>
@@ -318,7 +164,19 @@ const About = () => {
             )}
           >
             <div>
-              <Carousel value={imgsFacilities} numVisible={3} numScroll={3} responsiveOptions={responsiveOptions} style={{ width: width > 1024 ? "97%" : "100%" }} itemTemplate={itemTemplate} showNavigators={width >= 1024} showIndicators={false} circular draggable />
+              <Carousel
+                value={imagens}
+                numVisible={3}
+                numScroll={3}
+                responsiveOptions={responsiveOptions}
+                style={{ width: width >= 1024 ? "97%" : "90%" }}
+                itemTemplate={itemTemplate}
+                showNavigators={width >= 768}
+                showIndicators={false}
+                circular
+                autoplayInterval={3000}
+                draggable
+              />
             </div>
           </TabPanel>
         </TabView>

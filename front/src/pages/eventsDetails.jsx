@@ -23,7 +23,6 @@ const EventsDetails = () => {
                 publicado_em: formatarDataHora(resposta.postado_em),
                 capa: `${import.meta.env.VITE_URL}${resposta.capa.url}`,
             };
-            console.log(dadosFormatados);
             setEventsItem(dadosFormatados);
         } catch (error) {
             console.error("Error fetching event:", error);

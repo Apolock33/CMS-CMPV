@@ -1,14 +1,8 @@
-import { BelasArtes1, BelasArtes2, BelasArtes3, BelasArtes4, BelasArtes5, BelaVista1, BelaVista2, BelaVista3, BelaVista4, BelaVista5, Terraco1, Terraco2, Terraco3, Terraco4, Terraco5, ArcosETamandare1, ArcosETamandare2, ArcosETamandare3, ArcosETamandare4, ArcosETamandare5, CasablancaeBelaVista1, CasablancaeBelaVista2, CasablancaeBelaVista3, CasablancaeBelaVista4, CasablancaeBelaVista5 } from "../../../imports/hallGallery";
 import { useEffect, useState } from "react";
 import { Carousel } from "primereact/carousel";
 import { api } from "../../../services/api";
 import CarouselDialog from "../../../components/carouselDialog";
 import useWindowSize from "../../../hooks/useWindowSize";
-import espaco1 from "../../../assets/imgs/general/belasartes.jpg";
-import espaco2 from "../../../assets/imgs/general/belavsita.jpg";
-import espaco3 from "../../../assets/imgs/general/terraco.jpg";
-import espaco4 from "../../../assets/imgs/general/tamandare.jpg";
-import espaco5 from "../../../assets/imgs/general/casablancaebelavista.jpg";
 
 const Rents = () => {
   const { width } = useWindowSize();
@@ -20,16 +14,10 @@ const Rents = () => {
     try {
       const response = await api.get("/recursos?populate=*");
       const rawData = response.data.data;
-      const formattedData = rawData
-        .filter((item) => item.imagem !== null)
-        .map((item) => {
+      const formattedData = rawData.filter((item) => item.imagem !== null).map((item) => {
           const imageObj = item.imagem;
           const imageUrl = imageObj?.url ? `${import.meta.env.VITE_URL}${imageObj.url}` : "https://via.placeholder.com/400";
-          let galleryImages = [];
-          if (item.nome.includes("Belas Artes")) galleryImages = [BelasArtes1, BelasArtes2, BelasArtes3, BelasArtes4, BelasArtes5];
-          else if (item.nome.includes("Bela Vista")) galleryImages = [BelaVista1, BelaVista2, BelaVista3, BelaVista4, BelaVista5];
-          else if (item.nome.includes("Terraco")) galleryImages = [Terraco1, Terraco2, Terraco3, Terraco4, Terraco5];
-          return { id: item.id, itemImageSrc: imageUrl, title: item.nome, gallery: galleryImages };
+          return { id: item.id, itemImageSrc: imageUrl, title: item.nome, gallery: item.galeria };
         });
       setSpaces(formattedData);
     } catch (error) {
@@ -37,42 +25,9 @@ const Rents = () => {
     }
   };
 
-  const imgsSpaces = [
-    {
-      id: 1,
-      itemImageSrc: espaco1,
-      title: "Belas Artes",
-      gallery: [BelasArtes1, BelasArtes2, BelasArtes3, BelasArtes4, BelasArtes5],
-    },
-    {
-      id: 2,
-      itemImageSrc: espaco2,
-      title: "Bela Vista",
-      gallery: [BelaVista1, BelaVista2, BelaVista3, BelaVista4, BelaVista5],
-    },
-    {
-      id: 3,
-      itemImageSrc: espaco3,
-      title: "Espaço Duque de Caxias",
-      gallery: [Terraco1, Terraco2, Terraco3, Terraco4, Terraco5],
-    },
-    {
-      id: 4,
-      itemImageSrc: espaco4,
-      title: "Arcos e Tamandaré",
-      gallery: [ArcosETamandare1, ArcosETamandare2, ArcosETamandare3, ArcosETamandare4, ArcosETamandare5],
-    },
-    {
-      id: 5,
-      itemImageSrc: espaco5,
-      title: "Casablanca e Bela Vista",
-      gallery: [CasablancaeBelaVista1, CasablancaeBelaVista2, CasablancaeBelaVista3, CasablancaeBelaVista4, CasablancaeBelaVista5],
-    },
-  ];
-
   const responsiveOptions = [
     { breakpoint: "1024px", numVisible: 2, numScroll: 1 },
-    { breakpoint: "768px", numVisible: 2, numScroll: 1 },
+    { breakpoint: "768px", numVisible: 1, numScroll: 1 },
     { breakpoint: "426px", numVisible: 1, numScroll: 1 },
   ];
 
@@ -81,21 +36,18 @@ const Rents = () => {
   }, []);
 
   const itemTemplate = (item) => {
-    return (
-      <div
-        className="cursor-pointer relative overflow-hidden border-round-xl mx-2"
-        onClick={() => {
-          setSelectedImage(item);
-          setVisibleDialog(true);
-        }}
-      >
-        <img src={item.itemImageSrc} alt={item.title} className="w-full border-round-xl" />
-        <div className="absolute bottom-0 left-0 w-full text-white" style={{ background: "rgba(0, 0, 0, 0.6)", backdropFilter: "blur(2px)", padding: "0.1rem 1rem" }}>
-          <h3 className="m-0 text-lg font-bold">{item.title}</h3>
-        </div>
+  return (
+    <div className="cursor-pointer relative overflow-hidden border-round-xl mx-2 w-full" style={{ aspectRatio: '4/3' }} onClick={() => {
+        setSelectedImage(item);
+        setVisibleDialog(true);
+      }}>
+      <img src={item.itemImageSrc} alt={item.title} className="w-full h-full border-round-xl object-cover" />
+      <div className="absolute bottom-0 left-0 w-full text-white" style={{ background: "rgba(0, 0, 0, 0.6)", backdropFilter: "blur(2px)", padding: "0.5rem 1rem" }}>
+        <h3 className="m-0 text-lg font-bold">{item.title}</h3>
       </div>
-    );
-  };
+    </div>
+  );
+};
 
   return (
     <div>

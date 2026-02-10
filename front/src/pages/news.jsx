@@ -18,7 +18,7 @@ const News = () => {
       setCarregando(true);
       const response = await api.get("/noticias?populate=*");
       const dadosFormatados = response.data.data.map((item) => {
-        return { ...item, id: item.id - 1, capa: `${import.meta.env.VITE_URL}${item.capa.url}`, publicado_em: item.postado_em };
+        return { ...item, id: item.documentId, capa: `${import.meta.env.VITE_URL}${item.capa.url}`, publicado_em: item.postado_em };
       });
       setNewsInfos(dadosFormatados);
     } catch (error) {

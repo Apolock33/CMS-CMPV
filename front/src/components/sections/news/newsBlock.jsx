@@ -18,7 +18,7 @@ const NewsBlock = ({ newsInfos }) => {
       </div>
       <div className="grid mt-5 justify-content-center">
         {newsInfos.map((news) => (
-          <div key={news.id} className="col-12 md:col-6 lg:col-4">
+          <div key={news.id} className="col-12 md:col-6 lg:col">
             <Card className="p-0 border-round-xl" onClick={() => navigate("/noticias/" + news.documentId)}>
               <div className="relative border-round-xl overflow-hidden h-16rem">
                 <img src={news.capa} alt={news.titulo} className="w-full h-full object-cover" />
