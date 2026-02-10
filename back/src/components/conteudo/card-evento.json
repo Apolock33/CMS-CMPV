@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_conteudo_card_eventos",
+  "info": {
+    "displayName": "cardEvento",
+    "icon": "calendar"
+  },
+  "options": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "imagem": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "data_evento": {
+      "type": "datetime"
+    }
+  },
+  "config": {}
+}

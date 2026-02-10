@@ -12,8 +12,8 @@ const HomeNews = () => {
 
   const getNews = async () => {
     try {
-      const response = await api.get("/noticias?populate=*&pagination[limit]=4");
-      console.log(response.data.data);
+      const limit = width < 768 ? 4 : 6;
+      const response = await api.get("/noticias?populate=*&pagination[limit]=" + limit);
       const formattedData = response.data.data.map((item) => ({
         ...item,
         capa: item.capa?.url ? `${import.meta.env.VITE_URL}${item.capa.url}` : `${import.meta.env.PLACEHOLDER_URL}/400`,
@@ -42,7 +42,7 @@ const HomeNews = () => {
 
       <div className={`${width < 768 ? "flex flex-column" : "grid"}`}>
         {newsInfos.map((card) => (
-          <motion.div key={card.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: card.id * 0.1 }} className={`${width < 769 ? "col-12 mb-3" : "col-6"} cursor-pointer`} style={{ height: width < 769 ? "350px" : "400px" }} onClick={() => navigate("/noticias/" + card.id)}>
+          <motion.div key={card.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: card.id * 0.1 }} className={`col-12 md:col-6 xl:col-4 mb-3 cursor-pointer`} style={{ height: width < 769 ? "350px" : "400px" }} onClick={() => navigate("/noticias/" + card.documentId)}>
             <div className="relative overflow-hidden w-full h-full border-round-xl" style={{ borderRadius: "12px" }}>
               <motion.img src={card.capa} alt={card.titulo} className="w-full h-full object-cover" whileHover={{ scale: 1.05 }} transition={{ duration: 0.4 }} />
               <div className="absolute bottom-0 left-0 w-full text-white px-4 py-3" style={{ background: "rgba(0, 0, 0, 0.6)", display: "flex", flexDirection: "column", justifyContent: "center", backdropFilter: "blur(2px)" }}>

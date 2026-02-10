@@ -17,7 +17,6 @@ const NewsDetails = () => {
       setCarregando(true);
       const response = await api.get(`/noticias/${id}?populate=*`);
       const resposta = response.data.data;
-      console.log(resposta);
       const dadosFormatados = {
         id: resposta.documentId,
         titulo: resposta.titulo,
