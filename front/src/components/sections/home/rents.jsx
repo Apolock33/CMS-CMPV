@@ -14,7 +14,9 @@ const Rents = () => {
     try {
       const response = await api.get("/recursos?populate=*");
       const rawData = response.data.data;
-      const formattedData = rawData.filter((item) => item.imagem !== null).map((item) => {
+      const formattedData = rawData
+        .filter((item) => item.imagem !== null)
+        .map((item) => {
           const imageObj = item.imagem;
           const imageUrl = imageObj?.url ? `${import.meta.env.VITE_URL}${imageObj.url}` : "https://via.placeholder.com/400";
           return { id: item.id, itemImageSrc: imageUrl, title: item.nome, gallery: item.galeria };
@@ -36,18 +38,22 @@ const Rents = () => {
   }, []);
 
   const itemTemplate = (item) => {
-  return (
-    <div className="cursor-pointer relative overflow-hidden border-round-xl mx-2 w-full" style={{ aspectRatio: '4/3' }} onClick={() => {
-        setSelectedImage(item);
-        setVisibleDialog(true);
-      }}>
-      <img src={item.itemImageSrc} alt={item.title} className="w-full h-full border-round-xl object-cover" />
-      <div className="absolute bottom-0 left-0 w-full text-white" style={{ background: "rgba(0, 0, 0, 0.6)", backdropFilter: "blur(2px)", padding: "0.5rem 1rem" }}>
-        <h3 className="m-0 text-lg font-bold">{item.title}</h3>
+    return (
+      <div
+        className="cursor-pointer relative overflow-hidden border-round-xl mx-2 w-full"
+        style={{ aspectRatio: "4/3" }}
+        onClick={() => {
+          setSelectedImage(item);
+          setVisibleDialog(true);
+        }}
+      >
+        <img src={item.itemImageSrc} alt={item.title} className="w-full h-full border-round-xl object-cover" />
+        <div className="absolute bottom-0 left-0 w-full text-white" style={{ background: "rgba(0, 0, 0, 0.6)", backdropFilter: "blur(2px)", padding: "0.5rem 1rem" }}>
+          <h3 className="m-0 text-lg font-bold">{item.title}</h3>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
 
   return (
     <div>

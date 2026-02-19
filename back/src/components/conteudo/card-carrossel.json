@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_conteudo_card_carrossels",
+  "info": {
+    "displayName": "cardCarrossel",
+    "icon": "layer"
+  },
+  "options": {},
+  "attributes": {
+    "Cards": {
+      "type": "component",
+      "component": "conteudo.card",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

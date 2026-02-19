@@ -24,15 +24,6 @@
       },
       "required": true
     },
-    "descricao": {
-      "type": "text",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "required": true
-    },
     "postado_em": {
       "type": "date",
       "pluginOptions": {
@@ -71,6 +62,14 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "descricao": {
+      "type": "richtext",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

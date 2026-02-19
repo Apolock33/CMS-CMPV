@@ -1,11 +1,5 @@
-import { BreadCrumb } from "primereact/breadcrumb";
 import { useEffect, useState } from "react";
 import useWindowSize from "../hooks/useWindowSize";
-import activity1 from "../assets/imgs/general/atividades/basquete.jpg";
-import activity2 from "../assets/imgs/general/atividades/futebol.jpg";
-import activity3 from "../assets/imgs/general/atividades/pilates.jpg";
-import activity4 from "../assets/imgs/general/atividades/natacao.jpg";
-import activity5 from "../assets/imgs/general/atividades/judo.jpg";
 import ImgDialog from "../components/imgDialogActivities";
 import PageTitle from "../components/designSystem/pageTitle";
 import Spinner from "../components/designSystem/Spinner";

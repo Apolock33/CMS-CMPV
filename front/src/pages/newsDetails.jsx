@@ -51,7 +51,7 @@ const NewsDetails = () => {
           <p className="mt-0">Data da Postagem: {formatarData(newsItem?.publicado_em)}</p>
         </div>
         <Spinner carregando={carregando}>
-          <div className={`flex ${width < 769 ? "flex-column" : "justify-content-between"} gap-3 mt-4`}>
+          <div className={`flex ${width < 769 ? "flex-column" : "justify-content-between"} gap-3 my-4`}>
             <div className="flex flex-column gap-3 w-full md:w-8 lg:w-6 xl:w-4">
               <img src={newsItem?.capa} alt={newsItem?.titulo} className="w-full h-auto" />
             </div>
