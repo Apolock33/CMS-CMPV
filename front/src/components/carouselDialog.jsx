@@ -50,7 +50,7 @@ const CarouselDialog = ({ visible, onClose, images }) => {
                         {width < 769 ? (
                             <Galleria value={imgsArray} showThumbnails={false} showIndicators showItemNavigators circular item={itemTemplate} />
                         ) : (
-                            <Carousel value={imgsArray} numVisible={1} numScroll={1} circular draggable autoplayInterval={4000} itemTemplate={itemTemplate} showNavigators showIndicators style={{ width: '100%' }} />
+                            <Carousel value={imgsArray} numVisible={1} numScroll={1} circular draggable autoplayInterval={3000} itemTemplate={itemTemplate} showNavigators showIndicators style={{ width: '100%' }} />
                         )}
                     </motion.div>
                 </motion.div>

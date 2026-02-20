@@ -6,9 +6,9 @@
   },
   "options": {},
   "attributes": {
-    "Link": {
+    "links": {
       "type": "component",
-      "component": "navegacao.nav",
+      "component": "navegacao.link",
       "repeatable": true
     }
   },

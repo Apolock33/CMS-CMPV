@@ -12,10 +12,12 @@
   "pluginOptions": {},
   "attributes": {
     "nome": {
-      "type": "string"
+      "type": "string",
+      "unique": true
     },
     "rota": {
-      "type": "string"
+      "type": "string",
+      "unique": true
     }
   }
 }

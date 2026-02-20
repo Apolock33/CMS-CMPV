@@ -164,19 +164,7 @@ const About = () => {
             )}
           >
             <div>
-              <Carousel
-                value={imagens}
-                numVisible={3}
-                numScroll={3}
-                responsiveOptions={responsiveOptions}
-                style={{ width: width >= 1024 ? "97%" : "90%" }}
-                itemTemplate={itemTemplate}
-                showNavigators={width >= 768}
-                showIndicators={false}
-                circular
-                autoplayInterval={3000}
-                draggable
-              />
+              <Carousel value={imagens} numVisible={3} numScroll={1} responsiveOptions={responsiveOptions} style={{ width: width >= 1024 ? "97%" : "90%" }} itemTemplate={itemTemplate} showNavigators={width >= 768} showIndicators={false} circular autoplayInterval={3000} draggable />
             </div>
           </TabPanel>
         </TabView>

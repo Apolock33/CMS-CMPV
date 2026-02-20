@@ -15,6 +15,11 @@
         "videos",
         "audios"
       ]
+    },
+    "MenuNav": {
+      "type": "component",
+      "component": "navegacao.menu",
+      "repeatable": true
     }
   },
   "config": {}

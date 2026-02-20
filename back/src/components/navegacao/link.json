@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_navegacao_links",
+  "info": {
+    "displayName": "link",
+    "icon": "link"
+  },
+  "options": {},
+  "attributes": {
+    "nome": {
+      "type": "string"
+    },
+    "rota": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
