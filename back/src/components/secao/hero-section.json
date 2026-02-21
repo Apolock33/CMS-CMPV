@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_secao_hero_sections",
+  "info": {
+    "displayName": "hero Section",
+    "icon": "alien"
+  },
+  "options": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "subtitulo": {
+      "type": "string"
+    },
+    "descricao": {
+      "type": "string"
+    },
+    "Capa": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}

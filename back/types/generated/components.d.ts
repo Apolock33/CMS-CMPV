@@ -12,6 +12,17 @@ export interface ConteudoCard extends Struct.ComponentSchema {
   };
 }
 
+export interface ConteudoCardCarrossel extends Struct.ComponentSchema {
+  collectionName: 'components_conteudo_card_carrossels';
+  info: {
+    displayName: 'cardCarrossel';
+    icon: 'layer';
+  };
+  attributes: {
+    Cards: Schema.Attribute.Component<'conteudo.card', true>;
+  };
+}
+
 export interface ConteudoCardEvento extends Struct.ComponentSchema {
   collectionName: 'components_conteudo_card_eventos';
   info: {
@@ -34,18 +45,6 @@ export interface LayoutFooter extends Struct.ComponentSchema {
   attributes: {};
 }
 
-export interface LayoutGridSecoes extends Struct.ComponentSchema {
-  collectionName: 'components_layout_grid_secoes';
-  info: {
-    displayName: 'GridSecoes';
-    icon: 'dashboard';
-  };
-  attributes: {
-    Eventos: Schema.Attribute.Component<'secao.secao-eventos', false>;
-    Noticias: Schema.Attribute.Component<'secao.secao-noticias', false>;
-  };
-}
-
 export interface LayoutHeader extends Struct.ComponentSchema {
   collectionName: 'components_layout_headers';
   info: {
@@ -54,6 +53,7 @@ export interface LayoutHeader extends Struct.ComponentSchema {
   };
   attributes: {
     logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    MenuNav: Schema.Attribute.Component<'navegacao.menu', true>;
   };
 }
 
@@ -70,6 +70,18 @@ export interface MediaSlideCarrosel extends Struct.ComponentSchema {
   };
 }
 
+export interface NavegacaoLink extends Struct.ComponentSchema {
+  collectionName: 'components_navegacao_links';
+  info: {
+    displayName: 'link';
+    icon: 'link';
+  };
+  attributes: {
+    nome: Schema.Attribute.String;
+    rota: Schema.Attribute.String;
+  };
+}
+
 export interface NavegacaoMenu extends Struct.ComponentSchema {
   collectionName: 'components_navegacao_menus';
   info: {
@@ -77,7 +89,7 @@ export interface NavegacaoMenu extends Struct.ComponentSchema {
     icon: 'bulletList';
   };
   attributes: {
-    Link: Schema.Attribute.Component<'navegacao.nav', true>;
+    links: Schema.Attribute.Component<'navegacao.link', true>;
   };
 }
 
@@ -90,52 +102,16 @@ export interface NavegacaoNav extends Struct.ComponentSchema {
   attributes: {};
 }
 
-export interface SecaoSecaoEventos extends Struct.ComponentSchema {
-  collectionName: 'components_secao_secao_eventos';
+export interface SecaoHeroSection extends Struct.ComponentSchema {
+  collectionName: 'components_secao_hero_sections';
   info: {
-    displayName: 'SecaoEventos';
-    icon: 'moon';
+    displayName: 'hero Section';
+    icon: 'alien';
   };
   attributes: {
+    Capa: Schema.Attribute.Media<'images'>;
     descricao: Schema.Attribute.String;
-    lista_cards: Schema.Attribute.Component<'conteudo.card-evento', true>;
-    titulo: Schema.Attribute.String;
-  };
-}
-
-export interface SecaoSecaoHero extends Struct.ComponentSchema {
-  collectionName: 'components_secao_secao_heroes';
-  info: {
-    displayName: 'SecaoHero';
-    icon: 'crown';
-  };
-  attributes: {
-    Slides: Schema.Attribute.Component<'media.slide-carrosel', false>;
-  };
-}
-
-export interface SecaoSecaoNoticias extends Struct.ComponentSchema {
-  collectionName: 'components_secao_secao_noticias';
-  info: {
-    displayName: 'SecaoNoticias';
-    icon: 'lightbulb';
-  };
-  attributes: {
-    descricao: Schema.Attribute.String;
-    lista_cards: Schema.Attribute.Component<'conteudo.card', true>;
-    titulo: Schema.Attribute.String;
-  };
-}
-
-export interface SecaoSecaoRecursos extends Struct.ComponentSchema {
-  collectionName: 'components_secao_secao_recursos';
-  info: {
-    displayName: 'SecaoRecursos';
-    icon: 'restaurant';
-  };
-  attributes: {
-    descricao: Schema.Attribute.Text;
-    lista_cards: Schema.Attribute.Component<'conteudo.card', true>;
+    subtitulo: Schema.Attribute.String;
     titulo: Schema.Attribute.String;
   };
 }
@@ -144,17 +120,15 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'conteudo.card': ConteudoCard;
+      'conteudo.card-carrossel': ConteudoCardCarrossel;
       'conteudo.card-evento': ConteudoCardEvento;
       'layout.footer': LayoutFooter;
-      'layout.grid-secoes': LayoutGridSecoes;
       'layout.header': LayoutHeader;
       'media.slide-carrosel': MediaSlideCarrosel;
+      'navegacao.link': NavegacaoLink;
       'navegacao.menu': NavegacaoMenu;
       'navegacao.nav': NavegacaoNav;
-      'secao.secao-eventos': SecaoSecaoEventos;
-      'secao.secao-hero': SecaoSecaoHero;
-      'secao.secao-noticias': SecaoSecaoNoticias;
-      'secao.secao-recursos': SecaoSecaoRecursos;
+      'secao.hero-section': SecaoHeroSection;
     }
   }
 }

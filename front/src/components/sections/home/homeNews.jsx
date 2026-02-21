@@ -26,7 +26,7 @@ const HomeNews = () => {
 
   useEffect(() => {
     getNews();
-  }, []);
+  }, [width]);
 
   return (
     <div className="p-4">

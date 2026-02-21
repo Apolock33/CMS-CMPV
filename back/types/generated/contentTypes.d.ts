@@ -529,8 +529,7 @@ export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    descricao: Schema.Attribute.Text &
-      Schema.Attribute.Required &
+    descricao: Schema.Attribute.RichText &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -596,12 +595,12 @@ export interface ApiGaleriaGaleria extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
-  collectionName: 'home_pages';
+export interface ApiHeaderHeader extends Struct.SingleTypeSchema {
+  collectionName: 'headers';
   info: {
-    displayName: 'Home Page';
-    pluralName: 'home-pages';
-    singularName: 'home-page';
+    displayName: 'Header';
+    pluralName: 'headers';
+    singularName: 'header';
   };
   options: {
     draftAndPublish: true;
@@ -610,23 +609,14 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Layout: Schema.Attribute.DynamicZone<
-      [
-        'secao.secao-recursos',
-        'secao.secao-hero',
-        'layout.grid-secoes',
-        'layout.footer',
-        'layout.header',
-      ]
-    >;
+    Header: Schema.Attribute.Component<'layout.header', false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::home-page.home-page'
+      'api::header.header'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    rota: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -650,9 +640,9 @@ export interface ApiLinkLink extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::link.link'> &
       Schema.Attribute.Private;
-    nome: Schema.Attribute.String;
+    nome: Schema.Attribute.String & Schema.Attribute.Unique;
     publishedAt: Schema.Attribute.DateTime;
-    rota: Schema.Attribute.String;
+    rota: Schema.Attribute.String & Schema.Attribute.Unique;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -685,8 +675,7 @@ export interface ApiNoticiaNoticia extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    descricao: Schema.Attribute.Text &
-      Schema.Attribute.Required &
+    descricao: Schema.Attribute.RichText &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -718,6 +707,39 @@ export interface ApiNoticiaNoticia extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPaginaPagina extends Struct.CollectionTypeSchema {
+  collectionName: 'paginas';
+  info: {
+    displayName: 'Pagina';
+    pluralName: 'paginas';
+    singularName: 'pagina';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    conteudo: Schema.Attribute.DynamicZone<
+      ['secao.hero-section', 'media.slide-carrosel', 'conteudo.card-carrossel']
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descricao: Schema.Attribute.String;
+    link: Schema.Attribute.Component<'navegacao.link', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::pagina.pagina'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    titulo: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1288,9 +1310,10 @@ declare module '@strapi/strapi' {
       'api::atividade.atividade': ApiAtividadeAtividade;
       'api::evento.evento': ApiEventoEvento;
       'api::galeria.galeria': ApiGaleriaGaleria;
-      'api::home-page.home-page': ApiHomePageHomePage;
+      'api::header.header': ApiHeaderHeader;
       'api::link.link': ApiLinkLink;
       'api::noticia.noticia': ApiNoticiaNoticia;
+      'api::pagina.pagina': ApiPaginaPagina;
       'api::recurso.recurso': ApiRecursoRecurso;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
