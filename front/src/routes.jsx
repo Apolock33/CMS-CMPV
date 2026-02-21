@@ -2,9 +2,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import React from "react";
 
 const EventsDetails = React.lazy(() => import("./pages/eventsDetails"));
-const GlobalLayout = React.lazy(() => import("./layouts/globalLayout"));
-const PageWrapper = React.lazy(() => import("./pages/globalPage"));
-("");
 const NewsDetails = React.lazy(() => import("./pages/newsDetails"));
 const Activities = React.lazy(() => import("./pages/activities"));
 const MainLayout = React.lazy(() => import("./layouts/mainLayout"));
@@ -35,13 +32,7 @@ const Routes = () => {
     },
   ];
 
-  const rotasGlobais = [
-    { id: 1, path: "/", element: <GlobalLayout />, errorElement: <Error />, children: [
-        { id: 1, path: ":slug", element: <PageWrapper />, errorElement: <Error /> }
-    ] },
-  ];
-
-  const router = createBrowserRouter([...publicRoutes, ...rotasGlobais]);
+  const router = createBrowserRouter([...publicRoutes]);
 
   return <RouterProvider router={router} />;
 };
