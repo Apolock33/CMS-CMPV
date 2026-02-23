@@ -18,14 +18,9 @@ const Header = () => {
     try {
       const response = await api.get("/header?populate[Header][populate]=*");
       const responseMenu = await api.get("/header?populate[Header][populate][MenuNav][populate]=*");
-      const responsePaginas = await api.get("/paginas");
       const respostaHeader = response.data.data.Header;
-      const paginas = responsePaginas.data.data;
-      const mapSlugs = paginas?.map((pagina) => {
-        return { id: pagina?.id, nome: pagina?.titulo, rota: `/${pagina?.link?.rota}` }
-      });
       console.log(respostaHeader);
-      const menuFinal = [...responseMenu.data.data.Header.MenuNav[0].links, ...mapSlugs];
+      const menuFinal = [...responseMenu.data.data.Header.MenuNav[0].links];
       setHeaderData({ logo: `${import.meta.env.VITE_URL}${respostaHeader.logo.url}`, menu: menuFinal });
     } catch (error) {
       console.error(error);
